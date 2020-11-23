@@ -12,7 +12,7 @@ name: Build RPi 3B+ OpenWrt
 on:
   push:
     branches: 
-      - master
+      - main
   # schedule:
   #   - cron: 0 20 * * *
   # release:
