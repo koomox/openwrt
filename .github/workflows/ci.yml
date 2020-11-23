@@ -157,13 +157,13 @@ jobs:
           CONFIG_PACKAGE_kmod-fs-ext4=y
           EOF
           # USB3.0支持:
-          #cat >> .config <<EOF
-          #CONFIG_PACKAGE_kmod-usb-ohci=y
-          #CONFIG_PACKAGE_kmod-usb-ohci-pci=y
-          #CONFIG_PACKAGE_kmod-usb2=y
-          #CONFIG_PACKAGE_kmod-usb2-pci=y
-          #CONFIG_PACKAGE_kmod-usb3=y
-          #EOF
+          cat >> .config <<EOF
+          CONFIG_PACKAGE_kmod-usb-ohci=y
+          CONFIG_PACKAGE_kmod-usb-ohci-pci=y
+          CONFIG_PACKAGE_kmod-usb2=y
+          CONFIG_PACKAGE_kmod-usb2-pci=y
+          CONFIG_PACKAGE_kmod-usb3=y
+          EOF
           # Language support
           cat >> .config <<EOF
           CONFIG_LUCI_LANG_en=y
@@ -231,7 +231,9 @@ jobs:
           cat >> .config <<EOF
           CONFIG_PACKAGE_openssh-keygen=y
           CONFIG_PACKAGE_openssh-moduli=y
+          CONFIG_PACKAGE_openssh-client=y
           CONFIG_PACKAGE_openssh-server=y
+          CONFIG_PACKAGE_openssh-sftp-client=y
           CONFIG_PACKAGE_openssh-sftp-server=y
           CONFIG_PACKAGE_openssl-util=y
           CONFIG_PACKAGE_curl=y
