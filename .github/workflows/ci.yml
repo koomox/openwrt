@@ -21,7 +21,7 @@ on:
 env:
   REPO_URL: https://github.com/Lienol/openwrt.git
   REPO_PACKAGE: https://github.com/kenzok8/openwrt-packages.git
-  REPO_BRANCH: master
+  REPO_BRANCH: 19.07
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: .config
 
