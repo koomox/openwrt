@@ -69,8 +69,6 @@ jobs:
           git clone --depth=1 $REPO_PACKAGE
           cd $GITHUB_WORKSPACE/openwrt
           echo "src-git small https://github.com/kenzok8/small" >> ./feeds.conf.default
-          rm -rf ./feeds/packages/libs/libcap
-          svn co https://github.com/openwrt/packages/trunk/libs/libcap ./feeds/packages/libs/libcap
           ./scripts/feeds clean
           ./scripts/feeds update -a
           ./scripts/feeds install -a
