@@ -66,9 +66,9 @@ jobs:
       - name: Update feeds
         run: |
           cd $GITHUB_WORKSPACE/openwrt/package
-          git clone --depth=1 $REPO_PACKAGE
+          git clone --depth=1 https://github.com/kenzok8/openwrt-packages.git
+          git clone --depth=1 https://github.com/kenzok8/small.git
           cd $GITHUB_WORKSPACE/openwrt
-          echo "src-git small https://github.com/kenzok8/small" >> ./feeds.conf.default
           ./scripts/feeds clean
           ./scripts/feeds update -a
           ./scripts/feeds install -a
