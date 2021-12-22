@@ -134,6 +134,7 @@ jobs:
           # 固件压缩:
           cat >> .config <<EOF
           CONFIG_TARGET_IMAGES_GZIP=y
+		  CONFIG_RPI_AXIPERF=m
           EOF
           # 编译UEFI固件:
           #cat >> .config <<EOF
