@@ -62,6 +62,7 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE/openwrt/package
           git clone --depth=1 $REPO_PACKAGE
+          rm -rf small-package/baidupcs-web small-package/luci-app-macvlan small-package/luci-app-xray small-package/shadowsocks-libev
           cd $GITHUB_WORKSPACE/openwrt
           ./scripts/feeds clean
           ./scripts/feeds update -a
