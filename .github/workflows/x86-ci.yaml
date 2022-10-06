@@ -21,7 +21,7 @@ on:
 env:
   REPO_URL: https://github.com/Lienol/openwrt.git
   REPO_PACKAGE: https://github.com/kenzok8/openwrt-packages.git
-  REPO_BRANCH: 19.07
+  REPO_BRANCH: 21.02
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: .config
 
@@ -82,7 +82,7 @@ jobs:
           sed -i '/CST-8/a \\t\tset system\.\@system\[\-1\]\.zonename=\'Asia\/Shanghai\' package/base-files/files/bin/config_generate
       - name: Generate configuration file
         run: |
-          cd openwrt
+          cd $GITHUB_WORKSPACE/openwrt
           rm -f ./.config*
           touch ./.config
           #
@@ -256,13 +256,13 @@ jobs:
           make defconfig
       - name: Make download
         run: |
-          cd openwrt
+          cd $GITHUB_WORKSPACE/openwrt
           make download -j8
           find ./dl/ -size -1024c -exec rm -f {} \;
           df -h
       - name: Compile firmware
         run: |
-          cd openwrt
+          cd $GITHUB_WORKSPACE/openwrt
           make -j$(nproc) || make -j1 V=s
           echo "======================="
           echo "Space usage:"
@@ -273,7 +273,8 @@ jobs:
           du -h --max-depth=1 ./build_dir
           du -h --max-depth=1 ./bin
       - name: Prepare artifact
-        run: find ./openwrt/bin/targets/ -type d -name "packages" | xargs rm -rf {}
+        run: |
+          find $GITHUB_WORKSPACE/openwrt/bin/targets/ -type d -name "packages" | xargs rm -rf {}
 
       - name: Upload artifact
         uses: actions/upload-artifact@master
