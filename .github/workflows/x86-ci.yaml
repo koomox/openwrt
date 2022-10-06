@@ -20,7 +20,7 @@ on:
 
 env:
   REPO_URL: https://github.com/Lienol/openwrt.git
-  REPO_PACKAGE: https://github.com/kenzok8/openwrt-packages.git
+  REPO_PACKAGE: https://github.com/kenzok8/small-package.git
   REPO_BRANCH: 21.02
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: .config
@@ -61,8 +61,7 @@ jobs:
       - name: Update feeds
         run: |
           cd $GITHUB_WORKSPACE/openwrt/package
-          git clone --depth=1 https://github.com/kenzok8/openwrt-packages.git
-          git clone --depth=1 https://github.com/kenzok8/small.git
+          git clone --depth=1 $REPO_PACKAGE
           cd $GITHUB_WORKSPACE/openwrt
           ./scripts/feeds clean
           ./scripts/feeds update -a
@@ -253,13 +252,13 @@ jobs:
       - name: Make download
         run: |
           cd $GITHUB_WORKSPACE/openwrt
-          make download -j8
+          make -j8 download V=s
           find ./dl/ -size -1024c -exec rm -f {} \;
           df -h
       - name: Compile firmware
         run: |
           cd $GITHUB_WORKSPACE/openwrt
-          make -j$(nproc) || make -j1 V=s
+          make -j1 V=s
           echo "======================="
           echo "Space usage:"
           echo "======================="
