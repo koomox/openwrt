@@ -1,10 +1,9 @@
 #
 # This is free software, lisence use MIT.
 # 
-# Copyright (C) 2019 P3TERX <https://p3terx.com>
-# Copyright (C) 2019 KFERMercer <KFER.Mercer@gmail.com>
+# Copyright (C) 2021 KOOMOX <koomoxs@gmail.com>
 # 
-# <https://github.com/KFERMercer/OpenWrt-CI>
+# <https://github.com/koomox/openwrt>
 #
 
 name: Build RPi 3B+ OpenWrt
@@ -55,24 +54,14 @@ jobs:
       - name: Load custom feeds
         run: |
           cd $GITHUB_WORKSPACE/openwrt/package
-          git clone --depth=1 $REPO_PACKAGE
-          rm -rf small-package/baidupcs-web small-package/luci-app-macvlan small-package/luci-app-xray small-package/shadowsocks-libev
+          chmod +x $GITHUB_WORKSPACE/$DIY_P1_SH
+          $GITHUB_WORKSPACE/$DIY_P1_SH
 
       - name: Update feeds
         run: cd openwrt && ./scripts/feeds update -a
 
       - name: Install feeds
         run: cd openwrt && ./scripts/feeds install -a
-
-      - name: Network config
-        run: |
-          cd $GITHUB_WORKSPACE/openwrt
-          #echo '修改网关地址'
-          sed -i 's/192.168.1.1/192.168.0.230/g' package/base-files/files/bin/config_generate
-          sed -i "113i\\\t\t\t\tset network.\$1.dns='127.0.0.1 119.29.29.29 1.1.1.1'" package/base-files/files/bin/config_generate
-          sed -i "113i\\\t\t\t\tset network.\$1.gateway='192.168.0.1'" package/base-files/files/bin/config_generate
-          sed -i 's/UTC/CST-8/g' package/base-files/files/bin/config_generate
-          sed -i '/CST-8/a \\t\tset system\.\@system\[\-1\]\.zonename=\'Asia\/Shanghai\' package/base-files/files/bin/config_generate
 
       - name: Generate configuration file
         run: |
