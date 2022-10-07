@@ -54,11 +54,7 @@ jobs:
 
       - name: Load custom feeds
         run: |
-          cd $GITHUB_WORKSPACE/openwrt/package
-          git clone --depth=1 https://github.com/kenzok8/small-package.git
-          rm -rf small-package/baidupcs-web small-package/luci-app-macvlan small-package/luci-app-xray small-package/shadowsocks-libev
-          chmod +x $GITHUB_WORKSPACE/$DIY_P1_SH
-          $GITHUB_WORKSPACE/$DIY_P1_SH
+          chmod +x ./$DIY_P1_SH && ./$DIY_P1_SH
 
       - name: Update feeds
         run: cd openwrt && ./scripts/feeds update -a
@@ -70,9 +66,7 @@ jobs:
         run: |
           [ -e files ] && mv files openwrt/files
           [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
-          cd $GITHUB_WORKSPACE/openwrt
-          chmod +x $GITHUB_WORKSPACE/$DIY_P2_SH
-          $GITHUB_WORKSPACE/$DIY_P2_SH
+          chmod +x ./$DIY_P2_SH && ./$DIY_P2_SH
 
       - name: Download package
         run: |
