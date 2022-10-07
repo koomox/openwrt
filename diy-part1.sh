@@ -9,5 +9,9 @@
 # Description: OpenWrt DIY script part 1 (Before Update feeds)
 #
 
-git clone --depth=1 https://github.com/kenzok8/small-package.git openwrt/package/small-package
-rm -rf openwrt/package/small-package/baidupcs-web openwrt/package/small-package/luci-app-macvlan openwrt/package/small-package/luci-app-xray openwrt/package/small-package/shadowsocks-libev
+# git clone --depth=1 https://github.com/kenzok8/small-package.git openwrt/package/small-package
+# rm -rf openwrt/package/small-package/baidupcs-web openwrt/package/small-package/luci-app-macvlan openwrt/package/small-package/luci-app-xray openwrt/package/small-package/shadowsocks-libev
+
+# Add a feed source
+echo 'src-git kenzo https://github.com/kenzok8/openwrt-packages' >> openwrt/feeds.conf.default
+echo 'src-git small https://github.com/kenzok8/small' >> openwrt/feeds.conf.default
