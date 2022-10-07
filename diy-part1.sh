@@ -9,5 +9,4 @@
 # Description: OpenWrt DIY script part 1 (Before Update feeds)
 #
 
-git clone --depth=1 https://github.com/kenzok8/small-package.git
-rm -rf small-package/baidupcs-web small-package/luci-app-macvlan small-package/luci-app-xray small-package/shadowsocks-libev
+#
