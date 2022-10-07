@@ -55,11 +55,8 @@ jobs:
       - name: Load custom feeds
         run: |
           cd $GITHUB_WORKSPACE/openwrt/package
-          git clone --depth=1 $REPO_PACKAGE
-          rm -rf small-package/baidupcs-web small-package/luci-app-macvlan small-package/luci-app-xray small-package/shadowsocks-libev
-          cd $GITHUB_WORKSPACE/openwrt
           chmod +x $GITHUB_WORKSPACE/$DIY_P1_SH
-          $GITHUB_WORKSPACE/$DIY_P1_SH
+		  $GITHUB_WORKSPACE/$DIY_P1_SH
 
       - name: Update feeds
         run: cd openwrt && ./scripts/feeds update -a
