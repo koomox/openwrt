@@ -24,7 +24,7 @@ env:
   CONFIG_FILE: rpi3b.config
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
-  DEVICE_NAME: bcm2710_rpi3b_plus
+  DEVICE_NAME: _bcm2710_rpi3b_plus
 
 jobs:
   build:
