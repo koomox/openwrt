@@ -13,5 +13,8 @@
 # rm -rf openwrt/package/small-package/baidupcs-web openwrt/package/small-package/luci-app-macvlan openwrt/package/small-package/luci-app-xray openwrt/package/small-package/shadowsocks-libev
 
 # Add a feed source
+echo 'src-git packages https://github.com/openwrt/packages' >> openwrt/feeds.conf.default
+echo 'src-git luci https://github.com/openwrt/luci' >> openwrt/feeds.conf.default
+echo 'src-git routing https://github.com/openwrt/routing' >> openwrt/feeds.conf.default
 echo 'src-git kenzo https://github.com/kenzok8/openwrt-packages' >> openwrt/feeds.conf.default
 echo 'src-git small https://github.com/kenzok8/small' >> openwrt/feeds.conf.default
