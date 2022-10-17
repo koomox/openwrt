@@ -29,15 +29,14 @@ jobs:
   build_x64_job:
     name: Build on ubuntu-latest x86-64
     runs-on: ubuntu-latest
+    env: 
+      CONFIG_FILE: x86_64.config
+      DEVICE_NAME: _x86_64
     steps:
       - name: Checkout
         uses: actions/checkout@master
 
       - name: Initialization environment
-        env:
-          DEBIAN_FRONTEND: noninteractive
-          CONFIG_FILE: x86_64.config
-          DEVICE_NAME: _x86_64
         run: |
           docker rmi `docker images -q`
           sudo rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d /usr/local/lib/android /opt/ghc
@@ -70,7 +69,7 @@ jobs:
       - name: Load custom configuration
         run: |
           [ -e files ] && mv files openwrt/files
-          [ -e ${{ env.CONFIG_FILE }} ] && mv ${{ env.CONFIG_FILE }} openwrt/.config
+          [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
           chmod +x ./$DIY_P2_SH && ./$DIY_P2_SH
 
       - name: Download package
@@ -111,15 +110,14 @@ jobs:
   build_raspberry_pi3_job:
     name: Build on ubuntu-latest raspberry pi 3
     runs-on: ubuntu-latest
+    env: 
+      CONFIG_FILE: rpi3b.config
+      DEVICE_NAME: _bcm2710_rpi3b_plus
     steps:
       - name: Checkout
         uses: actions/checkout@master
 
       - name: Initialization environment
-        env:
-          DEBIAN_FRONTEND: noninteractive
-          CONFIG_FILE: rpi3b.config
-          DEVICE_NAME: _bcm2710_rpi3b_plus
         run: |
           docker rmi `docker images -q`
           sudo rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d /usr/local/lib/android /opt/ghc
@@ -152,7 +150,7 @@ jobs:
       - name: Load custom configuration
         run: |
           [ -e files ] && mv files openwrt/files
-          [ -e ${{ env.CONFIG_FILE }} ] && mv ${{ env.CONFIG_FILE }} openwrt/.config
+          [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
           chmod +x ./$DIY_P2_SH && ./$DIY_P2_SH
 
       - name: Download package
