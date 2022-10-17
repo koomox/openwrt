@@ -2,6 +2,31 @@
 
 在线编译定制openwrt固件
 	
+	
+## Edit IP address           
+
+```bash
+vi /etc/config/network
+```
+
+```
+config interface 'loopback'
+	option ifname 'lo'
+	option proto 'static'
+	option ipaddr '127.0.0.1'
+	option netmask '255.0.0.0'
+
+config globals 'globals'
+	option ula_prefix 'fdde:5dd2:14a0::/48'
+
+config interface 'lan'
+	option type 'bridge'
+	option ifname 'eth0'
+	option proto 'static'
+	option ipaddr '192.168.1.1'
+	option netmask '255.255.255.0'
+```
+
 ## Acknowledgments
 
 - [OpenWrt](https://github.com/openwrt/openwrt)
