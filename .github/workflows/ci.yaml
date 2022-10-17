@@ -27,7 +27,7 @@ env:
 
 jobs:
   build_x64_job:
-    name: Build ont ubuntu-latest x86-64
+    name: Build on ubuntu-latest x86-64
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
