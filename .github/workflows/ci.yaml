@@ -36,6 +36,8 @@ jobs:
       - name: Initialization environment
         env:
           DEBIAN_FRONTEND: noninteractive
+          CONFIG_FILE: x86_64.config
+          DEVICE_NAME: _x86_64
         run: |
           docker rmi `docker images -q`
           sudo rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d /usr/local/lib/android /opt/ghc
@@ -46,8 +48,6 @@ jobs:
           sudo timedatectl set-timezone "$TZ"
           sudo mkdir -p /workdir
           sudo chown $USER:$GROUPS /workdir
-          echo "CONFIG_FILE=x86_64.config" >> $GITHUB_ENV
-          echo "DEVICE_NAME=_x86_64" >> $GITHUB_ENV
 
       - name: Clone source code
         working-directory: /workdir
@@ -118,6 +118,8 @@ jobs:
       - name: Initialization environment
         env:
           DEBIAN_FRONTEND: noninteractive
+          CONFIG_FILE: rpi3b.config
+          DEVICE_NAME: _bcm2710_rpi3b_plus
         run: |
           docker rmi `docker images -q`
           sudo rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d /usr/local/lib/android /opt/ghc
@@ -128,8 +130,6 @@ jobs:
           sudo timedatectl set-timezone "$TZ"
           sudo mkdir -p /workdir
           sudo chown $USER:$GROUPS /workdir
-          echo "CONFIG_FILE=rpi3b.config" >> $GITHUB_ENV
-          echo "DEVICE_NAME=_bcm2710_rpi3b_plus" >> $GITHUB_ENV
 
       - name: Clone source code
         working-directory: /workdir
